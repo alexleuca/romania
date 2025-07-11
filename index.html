@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nume din România</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+            color: #333;
+        }
+        h1, h2 {
+            color: #004080;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .names {
+            columns: 3;
+            column-gap: 40px;
+            margin-top: 10px;
+        }
+        .names span {
+            display: block;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nume din România</h1>
+        <h2>Masculine</h2>
+        <div class="names" id="male-names">
+            <!-- Numele masculine vor fi inserate aici -->
+        </div>
+        <h2>Feminine</h2>
+        <div class="names" id="female-names">
+            <!-- Numele feminine vor fi inserate aici -->
+        </div>
+    </div>
+
+    <script>
+        const maleNames = [
+            "Andrei", "Alexandru", "Mihai", "Gabriel", "Cristian", "George", "Daniel", "Vlad", "Ionuț", "Florin",
+            "Robert", "Claudiu", "Marian", "Paul", "Radu", "Nicolae", "Bogdan", "Ciprian", "Liviu", "Sebastian",
+            "Valentin", "Darius", "Cătălin", "Alin", "Marius", "Eduard", "Raul", "Tudor", "David", "Cosmin",
+            "Ilie", "Emanuel", "Rareș", "Silviu", "Lucian", "Augustin", "Victor", "Denis", "Sorin", "Marcel",
+            "Teodor", "Iulian", "Petru", "Emil", "Cornel", "Vasile", "Ionel", "Dragoș", "Sergiu", "Tiberiu",
+            "Adrian", "Dorel", "Valentin", "Claudiu", "Iacob", "Ilie", "Sebastian", "Narcis", "Cosmin", "Teodor",
+            "Emil", "Ciprian", "Gabriel", "Silviu", "Eugen", "Claudiu", "Marius", "Sorin", "Petre", "Darius",
+            "Nicolae", "Răzvan", "Raul", "Damian", "Titus", "Lucian", "Cătălin", "Ionuț", "Marian", "Alexandru",
+            "Paul", "Ovidiu", "Liviu", "Cornel", "Florin", "Cristian", "Iulian", "Radu", "Dan", "Vlad", "George",
+            "Andrei", "Ilie", "Dragoș", "Claudiu", "Valentin", "Dorel", "Claudiu", "Răzvan", "Narcis", "Adrian",
+            "Damian", "Titus", "Ovidiu", "Răzvan", "Denis", "Emanuel", "Petru", "Iacob", "Florin", "Eugen",
+            "Dorel", "Raul", "Valentin", "Lucian", "Silviu", "Sorin", "Paul", "Dan", "Marius", "Claudiu",
+            "Alexandru", "Andrei", "George", "Vlad", "Cristian", "Mihai", "Gabriel", "Radu", "Ionuț", "Marian",
+            "Teodor", "Ilie", "Ciprian", "Cornel", "Liviu", "Nicolae", "Sergiu", "Tiberiu", "Emil", "Iulian",
+            "Darius", "Claudiu", "Valentin", "Damian", "Titus", "Ovidiu", "Raul", "Adrian", "Denis", "Emanuel",
+            "Petru", "Iacob", "Florin", "Eugen", "Dorel", "Raul", "Valentin", "Lucian", "Silviu", "Sorin",
+            "Paul", "Dan", "Marius", "Claudiu", "Alexandru", "Andrei", "George", "Vlad", "Cristian", "Mihai",
+            "Gabriel", "Radu", "Ionuț", "Marian", "Teodor", "Ilie", "Ciprian", "Cornel", "Liviu", "Nicolae",
+            "Sergiu", "Tiberiu", "Emil", "Iulian", "Darius", "Claudiu", "Valentin", "Damian", "Titus", "Ovidiu",
+            "Raul", "Adrian", "Denis", "Emanuel", "Petru", "Iacob", "Florin", "Eugen", "Dorel"
+        ];
+
+        const femaleNames = [
+            "Maria", "Elena", "Ioana", "Andreea", "Gabriela", "Alexandra", "Ana", "Cristina", "Roxana", "Daniela",
+            "Bianca", "Diana", "Laura", "Irina", "Claudia", "Adriana", "Liliana", "Monica", "Larisa", "Georgiana",
+            "Mihaela", "Raluca", "Alina", "Camelia", "Silvia", "Simona", "Anca", "Mariana", "Teodora", "Patricia",
+            "Corina", "Valentina", "Sonia", "Emilia", "Florentina", "Carmen", "Loredana", "Natalia", "Denisa",
+            "Paula", "Oana", "Melania", "Lorena", "Elisabeta", "Veronica", "Sabina", "Cristina", "Daniela",
+            "Ioana", "Alina", "Maria", "Elena", "Roxana", "Andreea", "Gabriela", "Alexandra", "Ana", "Claudia",
+            "Bianca", "Laura", "Diana", "Irina", "Adriana", "Liliana", "Monica", "Larisa", "Georgiana", "Mihaela",
+            "Raluca", "Camelia", "Silvia", "Simona", "Anca", "Mariana", "Teodora", "Patricia", "Corina",
+            "Valentina", "Sonia", "Emilia", "Florentina", "Carmen", "Loredana", "Natalia", "Denisa", "Paula",
+            "Oana", "Melania", "Lorena", "Elisabeta", "Veronica", "Sabina", "Diana", "Laura", "Gabriela",
+            "Roxana", "Cristina", "Ana", "Maria", "Elena", "Adriana", "Alina", "Anca", "Andreea", "Bianca",
+            "Camelia", "Carmen", "Claudia", "Corina", "Daniela", "Denisa", "Diana", "Elisabeta", "Emilia",
+            "Florentina", "Gabriela", "Georgiana", "Irina", "Larisa", "Laura", "Loredana", "Lorena", "Maria",
+            "Mariana", "Melania", "Mihaela", "Monica", "Natalia", "Oana", "Paula", "Patricia", "Raluca",
+            "Roxana", "Sabina", "Simona", "Sonia", "Teodora", "Valentina", "Veronica", "Alina", "Anca", "Bianca",
+            "Carmen", "Claudia", "Daniela", "Diana", "Elisabeta", "Emilia", "Gabriela", "Georgiana", "Irina",
+            "Laura", "Loredana", "Maria", "Mariana", "Mihaela", "Monica", "Natalia", "Oana", "Paula", "Patricia",
+            "Raluca", "Roxana", "Sabina", "Simona", "Sonia", "Teodora", "Valentina", "Veronica", "Alexandra",
+            "Adriana", "Alina", "Anca", "Bianca", "Camelia", "Carmen", "Claudia", "Corina", "Daniela", "Denisa",
+            "Diana", "Elisabeta", "Emilia", "Florentina", "Gabriela", "Georgiana", "Irina", "Larisa", "Laura",
+            "Loredana", "Lorena", "Maria", "Mariana", "Melania", "Mihaela", "Monica", "Natalia", "Oana", "Paula",
+            "Patricia", "Raluca", "Roxana", "Sabina", "Simona", "Sonia", "Teodora", "Valentina", "Veronica",
+            "Alexandra", "Alina", "Anca", "Bianca", "Carmen", "Claudia", "Daniela", "Diana", "Elisabeta",
+            "Emilia", "Gabriela", "Georgiana"
+        ];
+
+        function displayNames(namesArray, containerId) {
+            const container = document.getElementById(containerId);
+            namesArray.forEach(name => {
+                const span = document.createElement('span');
+                span.textContent = name;
+                container.appendChild(span);
+            });
+        }
+
+        displayNames(maleNames, 'male-names');
+        displayNames(femaleNames, 'female-names');
+    </script>
+</body>
+</html>
